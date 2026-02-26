@@ -116,7 +116,8 @@ describe('Greeting App', () => {
       // First click
       input.value = 'Test1'
       button.click()
-      const firstChildCount = container?.children.length || 0
+      // Animation triggered - store reference to verify cleanup
+      expect(container?.children.length).toBeGreaterThan(0)
 
       // Second click should clear and create new animation
       input.value = 'Test2'
@@ -169,7 +170,6 @@ describe('Greeting App', () => {
   describe('Feature 5: UI Styling', () => {
     it('should have centered card layout', () => {
       const card = document.querySelector('.card')
-      const styles = window.getComputedStyle(card!)
       
       // Check that card has appropriate styling
       expect(card).not.toBeNull()
